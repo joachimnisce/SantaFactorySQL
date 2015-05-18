@@ -46,7 +46,7 @@ namespace santaFactory
             catch (Exception abc)
             {
 
-                //throw error = messagebox
+               // throw error = messagebox
                 MessageBox.Show(abc.Message.ToString());
             }
         }
@@ -55,5 +55,82 @@ namespace santaFactory
         {
             populateListView();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            adddwarf frm = new adddwarf("add");
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                //after saving data, populate list view in the list of dwarves.
+                populateListView();
+                //MessageBox.Show(" You're saving a dwarf.");
+            }
+           
+
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            adddwarf frm = new adddwarf("edit");
+            frm.id = int.Parse(lstDwarves.SelectedItems[0].Text);
+            frm.name = (lstDwarves.SelectedItems[0].SubItems[1].Text);
+            frm.age = (lstDwarves.SelectedItems[0].SubItems[2].Text);
+            frm.color = (lstDwarves.SelectedItems[0].SubItems[3].Text);
+            frm.department = lstDwarves.SelectedItems[0].SubItems[4].Text;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                //after saving data, populate list view in the list of dwarves.
+                populateListView();
+                //MessageBox.Show(" You're saving a dwarf.");
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection xyz = new MySqlConnection(helpers.connectionstring))
+                {
+                    xyz.Open();
+                    string sql = "DELETE FROM dwarftable WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(sql, xyz);
+                    cmd.Parameters.AddWithValue("id", lstDwarves.SelectedItems[0].Text);
+                    cmd.ExecuteNonQuery();
+                    populateListView();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+                
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(lstDwarves.SelectedItems[0].Text);
+            string name = lstDwarves.SelectedItems[0].SubItems[1].Text;
+            viewToysCreated frm = new viewToysCreated(id);
+            frm.Dwarfname = name;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
+            
+        }
+
+        
+
+        //view toys created
+
+
+
     }
 }

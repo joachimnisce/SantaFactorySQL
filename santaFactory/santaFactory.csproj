@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adddwarf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adddwarf.Designer.cs">
+      <DependentUpon>adddwarf.cs</DependentUpon>
+    </Compile>
     <Compile Include="formMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,15 @@
     <Compile Include="helpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="viewToysCreated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="viewToysCreated.Designer.cs">
+      <DependentUpon>viewToysCreated.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="adddwarf.resx">
+      <DependentUpon>adddwarf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +104,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="viewToysCreated.resx">
+      <DependentUpon>viewToysCreated.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
